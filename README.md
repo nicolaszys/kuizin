@@ -1,5 +1,13 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Firebase scripts
+
+### `firebase serve`
+Starts the local firebase dev server
+
+### `firebase deploy`
+Deploys the build directory to firebase
+
 ## Available Scripts
 
 In the project directory, you can run:
