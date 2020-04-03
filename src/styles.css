@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #fcfcfc;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  /* overflow: hidden; */
+
+}
+
+#root {
+  width: 60%;
+  height: 50%;
+
+}
+.chat-area, .home {
+  margin-top: 60px;
+}
+
+.chat-area {
+  padding: 20px;
+  height: 900px;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+.chat-area .chat-bubble {
+  background-color: #d9eeff;
+  padding: 10px 10px 24px 10px;
+  border-radius: 4px;
+  max-width: 400px;
+  word-wrap: break-word;
+}
+
+.chat-bubble .chat-time {
+  font-size: 12px;
+  color: #757575;
+  text-align: right;
+}
+
+.chat-area .chat-bubble.current-user {
+  margin-left: auto;
+  background-color: #ffc55b;
+}
+
+.form-control {
+  width: 100%;
+}
+
+.form-control:focus {
+  box-shadow: none;
+}
+
+#chat-send-form {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+
+.btn-submit {
+  background-color: #ffc55b;
+  color: white;
+
+}
+
+@media screen and (max-width: 767px) {
+  .form-control {
+    width: 100%;
+  }
+
+  #root {
+    width: 98%;
+  }
+
+  .chat-area .chat-bubble {
+    max-width: 280px;
+  }
+}
+
+@media screen and (max-height: 900px) {
+  .chat-area {
+    height: 500px;
+  } 
+} 
