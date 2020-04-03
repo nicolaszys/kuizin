@@ -1,3 +1,6 @@
+## Build:
+![firebase-deploy](https://github.com/paulpalmieri/kuizin/workflows/firebase-deploy/badge.svg)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Firebase scripts

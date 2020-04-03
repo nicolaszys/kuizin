@@ -14,8 +14,6 @@
 # firebase cache
 /firebase
 
-# firebase config
-/src/firebase-config.js
 
 # misc
 .DS_Store
