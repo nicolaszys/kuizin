@@ -12,13 +12,13 @@ export default class Recipes extends Component {
       user: auth().currentUser,
       title: '',
       content: '',
+      recipe_picture: '',
       readError: null,
       postingRecipe: false,
       sucess: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleContentChange = this.handleContentChange.bind(this);
-    this.handleTitleChange = this.handleTitleChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   // handle submit recipe with a push
@@ -29,6 +29,7 @@ export default class Recipes extends Component {
       await db.ref('recipes').push({
         title: this.state.title,
         content: this.state.content,
+        recipe_picture: this.state.recipe_picture,
         timestamp: Date.now(),
         uid: this.state.user.uid,
       });
@@ -40,20 +41,13 @@ export default class Recipes extends Component {
     }
   }
 
-  handleContentChange(event) {
-    console.log(event);
+  async handleSubmitV2(event) {
 
-    this.setState({
-      content: event.target.value,
-    });
   }
 
-  handleTitleChange(event) {
-    console.log(event);
-
-    this.setState({
-      title: event.target.value,
-    });
+  // handle form input changes
+  handleChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
   }
 
 
@@ -63,8 +57,9 @@ export default class Recipes extends Component {
         <Header />
         <form id="add-recipe-form" onSubmit={this.handleSubmit}>
           {this.state.success ? (<div id="add-recipe-success-message">Sucessfully posted recipe</div>) : ''}
-          <input type="text" className="form-control" placeholder="title" name="title" onChange={this.handleTitleChange} value={this.state.title} />
-          <input type="text" className="form-control" placeholder="content" name="content" onChange={this.handleContentChange} value={this.state.content} />
+          <input type="text" className="form-control" placeholder="title" name="title" onChange={this.handleChange} value={this.state.title} />
+          <input type="text" className="form-control" placeholder="content" name="content" onChange={this.handleChange} value={this.state.content} />
+          <input type="file" placeholder="image" name="recipe_picture" onChange={this.handleChange} value={this.state.recipe_picture} />
           {this.state.error ? <p className="text-danger">{this.state.error}</p> : null}
 
           {this.state.postingRecipe ? (

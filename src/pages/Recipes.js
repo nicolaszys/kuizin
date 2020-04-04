@@ -46,8 +46,11 @@ export default class Recipes extends Component {
           ) : ''}
           {this.state.recipes.map((recipe) => (
 
-            <div key={recipe.id} className="recipe-thumbnail">
+            <div key={recipe.timestamp} className="recipe-thumbnail">
               {recipe.content}
+              {recipe.recipe_image}
+              {recipe.timestamp}
+              <img src={recipe.recipe_picture} alt="Not loading"></img>
             </div>
           ))}
         </div>
