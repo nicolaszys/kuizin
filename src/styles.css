@@ -13,6 +13,7 @@ body {
 #root {
   width: 60%;
   height: 50%;
+  margin-top: 60px;
 
 }
 .chat-area, .home {
@@ -61,11 +62,69 @@ body {
   margin-right: 2%;
 }
 
+#add-recipe-form {
+  margin-top: 60px;
+  margin: 60px 10px 0px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
+}
+
+#add-recipe-form > input {
+  margin: 10px;
+
+}
+
+.menu-btn {
+  background-color: #ffc55b;
+}
+
+#add-recipe-form > button {
+  margin: 10px;
+  width: 30%;
+
+}
+
+#add-recipe-success-message {
+  width: 80%;
+  padding: 4px;
+  background: #b3ffb9;
+  text-align: center;
+  color: green;
+  border-radius: 2px;
+}
+
+#home-container {
+  display: flex;
+  height: 250px;
+  flex-direction:column;
+  justify-content: space-evenly;
+}
 .btn-submit {
   background-color: #ffc55b;
   color: white;
 
+}
+
+#recipes-container {
+  /* padding-top: 30px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.recipe-thumbnail {
+  margin: 5px;
+  padding: 6px;
+  width: 300px;
+  height: 60px;
+  border: 1px solid black;
+  border-radius: 4px;
+  text-align: center;
+
+  /* font-weight: bold; */
 }
 
 @media screen and (max-width: 767px) {

@@ -3,10 +3,14 @@ import {
   Route,
   BrowserRouter as Router,
   Switch,
-  // Redirect,
+  Redirect,
 } from 'react-router-dom';
 // import Home from './pages/Home';
 import Chat from './pages/Chat';
+import Home from './pages/Home';
+import Recipes from './pages/Recipes';
+import AddRecipe from './pages/AddRecipe';
+
 // import Signup from './pages/Signup';
 // import Login from './pages/Login';
 import { auth } from './services/firebase';
@@ -27,18 +31,18 @@ import './styles.css';
 //   );
 // }
 
-// function PublicRoute({ component: Component, authenticated, ...rest }) {
-//   return (
-//     <Route
-//       {...rest}
-//       render={(props) => (authenticated === false ? (
-//         <Component {...props} />
-//       ) : (
-//         <Redirect to="/chat" />
-//       ))}
-//     />
-//   );
-// }
+function PublicRoute({ component: Component, authenticated, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={(props) => (authenticated === true ? (
+        <Component {...props} />
+      ) : (
+        <Redirect to="/" />
+      ))}
+    />
+  );
+}
 
 class App extends Component {
   constructor() {
@@ -75,21 +79,26 @@ class App extends Component {
     ) : (
       <Router>
         <Switch>
-          <Route exact path="/" component={Chat} />
-          {/* <PrivateRoute
+          <Route exact path="/" component={Home} />
+          <PublicRoute
             path="/chat"
             authenticated={this.state.authenticated}
             component={Chat}
           />
           <PublicRoute
-            path="/signup"
+            path="/recipes"
             authenticated={this.state.authenticated}
-            component={Signup}
+            component={Recipes}
           />
           <PublicRoute
-            path="/login"
+            path="/add-recipe"
             authenticated={this.state.authenticated}
-            component={Login}
+            component={AddRecipe}
+          />
+          {/* <PublicRoute
+            path="/placeholder"
+            authenticated={this.state.authenticated}
+            component={}
           /> */}
         </Switch>
       </Router>

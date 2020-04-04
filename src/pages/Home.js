@@ -1,3 +1,4 @@
+/* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
@@ -11,11 +12,12 @@ export default class HomePage extends Component {
         <section>
           <div className="jumbotron jumbotron-fluid py-5">
             <div className="container text-center py-5">
-              <h1 className="display-4">Welcome to Chatty</h1>
-              <p className="lead">A great place to share your thoughts with friends</p>
-              <div className="mt-4">
-                <Link className="btn btn-primary px-5 mr-3" to="/signup">Create New Account</Link>
-                <Link className="btn px-5" to="/login">Login to Your Account</Link>
+              <h1 className="display-4">Welcome</h1>
+              <div id="home-container">
+                <Link className="menu-btn btn px-3" to="/chat">Go to chat app</Link>
+                <Link className="menu-btn btn px-3" to="/recipes">Go to recipes app</Link>
+                <Link className="menu-btn btn px-3" to="/add-recipe">Add a recipe</Link>
+
               </div>
             </div>
           </div>
