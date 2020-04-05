@@ -11,9 +11,6 @@
 # production
 /build
 
-# firebase cache
-/firebase
-
 
 # misc
 .DS_Store
