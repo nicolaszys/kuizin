@@ -14,9 +14,9 @@ export default class HomePage extends Component {
             <div className="container text-center py-5">
               <h1 className="display-4">Welcome</h1>
               <div id="home-container">
-                <Link className="menu-btn btn px-3" to="/chat">Go to chat app</Link>
-                <Link className="menu-btn btn px-3" to="/recipes">Go to recipes app</Link>
-                <Link className="menu-btn btn px-3" to="/add-recipe">Add a recipe</Link>
+                <Link className="menu-btn btn px-3" to="/chat">Chat</Link>
+                <Link className="menu-btn btn px-3" to="/recipes">Recipes</Link>
+                <Link className="menu-btn btn px-3" to="/add-recipe">Add recipe</Link>
 
               </div>
             </div>

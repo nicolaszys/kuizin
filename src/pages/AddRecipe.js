@@ -1,8 +1,10 @@
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable react/no-unused-state */
 import React, { Component } from 'react';
 import Header from '../components/Header';
 import { auth, db, storage } from '../services/firebase';
+import { RecipeFileInputButton, RecipeSubmitButton } from '../styles/Buttons';
 
 
 export default class AddRecipe extends Component {
@@ -16,7 +18,7 @@ export default class AddRecipe extends Component {
       recipe_picture_name: '',
       readError: null,
       postingRecipe: false,
-      sucess: false,
+      success: false,
       created_recipe_id: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,18 +31,6 @@ export default class AddRecipe extends Component {
   async handleSubmit(event) {
     event.preventDefault();
 
-
-    // const img = document.createElement('img');
-    // img.file = this.file_input.current.files[0];
-    // document.getElementById('add-recipe-form').appendChild(img);
-
-    // const reader = new FileReader();
-    // reader.onload = (function (aImg) { return function (e) { aImg.src = e.target.result; }; }(img));
-    // const recipe_image_data = await reader.readAsDataURL(this.file_input.current.files[0]);
-
-    // console.log(recipe_image_data);
-
-    // console.log(this.file_input);
     this.setState({ writeError: null, postingRecipe: true });
     try {
       const database_op = await db.ref('recipes').push({
@@ -54,15 +44,15 @@ export default class AddRecipe extends Component {
       console.log(database_op.path.pieces_[1]);
 
       this.setState({
-        content: '', title: '', postingRecipe: false, success: true, created_recipe_id: database_op.path.pieces_[1],
+        content: '', title: '', created_recipe_id: database_op.path.pieces_[1],
       });
     } catch (error) {
       this.setState({ writeError: error.message });
     }
 
-    alert(
-      `Selected file - ${this.file_input.current.files[0].name}`,
-    );
+    // alert(
+    //   `Selected file - ${this.file_input.current.files[0].name}`,
+    // );
     const storageRef = storage.ref();
     const recipeImageRef = storageRef.child(`${this.state.created_recipe_id}/${this.file_input.current.files[0].name}`);
     const file = this.file_input.current.files[0];
@@ -70,43 +60,40 @@ export default class AddRecipe extends Component {
     try {
       await recipeImageRef.put(file).then((snapshot) => {
         console.log('Uploaded a blob or file!');
+        this.setState({ postingRecipe: false, success: true });
       });
     } catch (error) {
       this.setState({ writeError: error.message });
     }
   }
 
-
-  // handle form input changes
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
-
-  handleImageChange(e) {
-    if (e.target.files[0]) {
-      const recipe_picture = e.target.files[0];
-      this.setState(() => ({ recipe_picture }));
-    }
-  }
-
 
   render() {
     return (
       <div id="add-recipe-container">
         <Header />
         <form id="add-recipe-form" onSubmit={this.handleSubmit}>
-          {this.state.success ? (<div id="add-recipe-success-message">Sucessfully posted recipe</div>) : ''}
           <input type="text" className="form-control" placeholder="title" name="title" onChange={this.handleChange} value={this.state.title} />
           <input type="text" className="form-control" placeholder="content" name="content" onChange={this.handleChange} value={this.state.content} />
-          <input type="file" accept="image/png, image/jpeg" name="recipe_picture" ref={this.file_input} onChange={this.handleChange} />
+          {/* <input type="file" accept="image/png, image/jpeg" name="recipe_picture" ref={this.file_input} onChange={this.handleChange} /> */}
           {this.state.error ? <p className="text-danger">{this.state.error}</p> : null}
+
+          <RecipeFileInputButton>
+            <input type="file" id="file" ref={this.file_input} />
+            <label htmlFor="file">Upload a picture</label>
+          </RecipeFileInputButton>
 
           {this.state.postingRecipe ? (
             <div className="spinner-border text-success" role="status">
               <span className="sr-only">Loading...</span>
             </div>
           ) : ''}
-          <button id="add-recipe-button" type="submit" className="btn btn-submit ml-1">Send recipe</button>
+          {this.state.success ? (<div id="add-recipe-success-message">Sucessfully posted recipe</div>) : ''}
+
+          <RecipeSubmitButton type="submit">Upload recipe</RecipeSubmitButton>
         </form>
       </div>
     );

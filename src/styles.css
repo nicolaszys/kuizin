@@ -47,7 +47,7 @@ body {
 }
 
 .form-control {
-  width: 100%;
+  width: 50%;
 }
 
 .form-control:focus {
@@ -76,15 +76,8 @@ body {
 
 }
 
-.menu-btn {
-  background-color: #ffc55b;
-}
 
-#add-recipe-form > button {
-  margin: 10px;
-  width: 30%;
 
-}
 
 #add-recipe-success-message {
   width: 80%;
@@ -105,10 +98,18 @@ body {
   display: flex;
   height: 250px;
   flex-direction:column;
-  justify-content: space-evenly;
+  justify-content: center;
+  /* margin: 20px; */
+  align-items: center;
 }
+
+#home-container > a {
+  width: 180px;
+  margin: 10px;
+
+} 
 .btn-submit {
-  background-color: #ffc55b;
+  background-color: #ffb52c;
   color: white;
 
 }
